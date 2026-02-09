@@ -16,7 +16,7 @@ const menuItems = [
     id: 1,
     name: 'Caesar Salad',
     description: 'Fresh romaine lettuce with parmesan, croutons, and house-made Caesar dressing',
-    price: 12.99,
+    price: 1950,
     category: 'appetizers',
     image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
     isVegetarian: true,
@@ -26,7 +26,7 @@ const menuItems = [
     id: 2,
     name: 'Grilled Salmon',
     description: 'Atlantic salmon with lemon butter sauce, seasonal vegetables, and rice',
-    price: 28.99,
+    price: 4350,
     category: 'seafood',
     image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
     isGlutenFree: true,
@@ -36,7 +36,7 @@ const menuItems = [
     id: 3,
     name: 'Margherita Pizza',
     description: 'Classic pizza with fresh mozzarella, tomatoes, and basil',
-    price: 16.99,
+    price: 2550,
     category: 'pizza',
     image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
     isVegetarian: true,
@@ -45,7 +45,7 @@ const menuItems = [
     id: 4,
     name: 'Ribeye Steak',
     description: '12oz USDA Prime ribeye with garlic mashed potatoes and grilled asparagus',
-    price: 42.99,
+    price: 6450,
     category: 'main-course',
     image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
     isGlutenFree: true,
@@ -55,7 +55,7 @@ const menuItems = [
     id: 5,
     name: 'Chocolate Lava Cake',
     description: 'Warm chocolate cake with molten center, served with vanilla ice cream',
-    price: 9.99,
+    price: 1500,
     category: 'desserts',
     image: 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
     isVegetarian: true,
@@ -64,7 +64,7 @@ const menuItems = [
     id: 6,
     name: 'Craft Beer Selection',
     description: 'Ask about our rotating selection of local craft beers',
-    price: 7.99,
+    price: 1200,
     category: 'drinks',
     image: 'https://images.unsplash.com/photo-1575037614876-c38a4d44f5b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
   },
@@ -136,7 +136,7 @@ const MenuSection = () => {
               <div className="p-6">
                 <div className="flex items-start justify-between mb-2">
                   <h3 className="text-lg font-semibold text-secondary-900">{item.name}</h3>
-                  <span className="text-xl font-bold text-primary-600">${item.price}</span>
+                  <span className="text-xl font-bold text-primary-600">KES {item.price.toLocaleString()}</span>
                 </div>
                 <p className="text-secondary-600 text-sm mb-4 line-clamp-2">{item.description}</p>
 

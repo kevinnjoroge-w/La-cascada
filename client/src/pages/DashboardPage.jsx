@@ -39,7 +39,7 @@ const DashboardPage = () => {
     { label: 'Total Bookings', value: '12', icon: '📅' },
     { label: 'Orders Placed', value: '28', icon: '🍴' },
     { label: 'Loyalty Points', value: '2,450', icon: '⭐' },
-    { label: 'Total Spent', value: '$4,320', icon: '💰' },
+    { label: 'Total Spent', value: 'KES 648,000', icon: '💰' },
   ];
 
   const recentActivity = [

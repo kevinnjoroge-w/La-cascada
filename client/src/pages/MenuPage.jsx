@@ -22,12 +22,12 @@ const MenuPage = () => {
     ]);
 
     setItems([
-      { _id: 1, name: 'Caesar Salad', description: 'Fresh romaine with parmesan and croutons', price: 12.99, category: 'appetizers', isVegetarian: true, image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400' },
-      { _id: 2, name: 'Grilled Salmon', description: 'Atlantic salmon with lemon butter', price: 28.99, category: 'seafood', isGlutenFree: true, image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400' },
-      { _id: 3, name: 'Margherita Pizza', description: 'Classic pizza with fresh mozzarella', price: 16.99, category: 'pizza', isVegetarian: true, image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400' },
-      { _id: 4, name: 'Ribeye Steak', description: '12oz USDA Prime with garlic mashed potatoes', price: 42.99, category: 'main-course', isGlutenFree: true, image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400' },
-      { _id: 5, name: 'Chocolate Lava Cake', description: 'Warm chocolate cake with molten center', price: 9.99, category: 'desserts', isVegetarian: true, image: 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400' },
-      { _id: 6, name: 'Craft Beer', description: 'Local craft beer selection', price: 7.99, category: 'drinks', image: 'https://images.unsplash.com/photo-1575037614876-c38a4d44f5b8?w=400' },
+      { _id: 1, name: 'Caesar Salad', description: 'Fresh romaine with parmesan and croutons', price: 1950, category: 'appetizers', isVegetarian: true, image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400' },
+      { _id: 2, name: 'Grilled Salmon', description: 'Atlantic salmon with lemon butter', price: 4350, category: 'seafood', isGlutenFree: true, image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400' },
+      { _id: 3, name: 'Margherita Pizza', description: 'Classic pizza with fresh mozzarella', price: 2550, category: 'pizza', isVegetarian: true, image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400' },
+      { _id: 4, name: 'Ribeye Steak', description: '12oz USDA Prime with garlic mashed potatoes', price: 6450, category: 'main-course', isGlutenFree: true, image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400' },
+      { _id: 5, name: 'Chocolate Lava Cake', description: 'Warm chocolate cake with molten center', price: 1500, category: 'desserts', isVegetarian: true, image: 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400' },
+      { _id: 6, name: 'Craft Beer', description: 'Local craft beer selection', price: 1200, category: 'drinks', image: 'https://images.unsplash.com/photo-1575037614876-c38a4d44f5b8?w=400' },
     ]);
     setLoading(false);
   }, []);
@@ -89,7 +89,7 @@ const MenuPage = () => {
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-xl font-semibold text-secondary-900">{item.name}</h3>
-                    <span className="text-xl font-bold text-primary-600">${item.price}</span>
+                    <span className="text-xl font-bold text-primary-600">KES {item.price.toLocaleString()}</span>
                   </div>
                   <p className="text-secondary-600 text-sm mb-4">{item.description}</p>
                   <button

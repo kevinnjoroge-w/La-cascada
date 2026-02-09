@@ -1,8 +1,24 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
+/**
+ * Authorize roles - check if user has required role
+ * Defined at top to ensure it's available for other modules
+ */
+const authorize = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).json({
+        success: false,
+        message: `User role '${req.user.role}' is not authorized to access this route`,
+      });
+    }
+    next();
+  };
+};
+
 // Protect routes - verify JWT token
-exports.protect = async (req, res, next) => {
+const protect = async (req, res, next) => {
   let token;
 
   // Check for token in Authorization header
@@ -36,7 +52,7 @@ exports.protect = async (req, res, next) => {
     }
 
     // Check if user is active
-    if (!user) {
+    if (user.isActive === false) {
       return res.status(401).json({
         success: false,
         message: 'User no longer exists',
@@ -56,7 +72,7 @@ exports.protect = async (req, res, next) => {
 };
 
 // Optional auth - doesn't fail if no token, but attaches user if present
-exports.optionalAuth = async (req, res, next) => {
+const optionalAuth = async (req, res, next) => {
   let token;
 
   if (
@@ -82,7 +98,7 @@ exports.optionalAuth = async (req, res, next) => {
 };
 
 // Check if user is logged in (for frontend)
-exports.isAuthenticated = async (req, res, next) => {
+const isAuthenticated = async (req, res, next) => {
   let token;
 
   if (
@@ -125,5 +141,12 @@ exports.isAuthenticated = async (req, res, next) => {
       message: 'Invalid token',
     });
   }
+};
+
+module.exports = {
+  protect,
+  authorize,
+  optionalAuth,
+  isAuthenticated,
 };
 

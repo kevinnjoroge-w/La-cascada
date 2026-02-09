@@ -5,7 +5,7 @@ const rooms = [
     id: 1,
     name: 'Standard Room',
     type: 'standard',
-    price: 149,
+    price: 22500,
     image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     features: ['King Bed', 'City View', 'Free WiFi', '32" TV'],
     size: 35,
@@ -15,7 +15,7 @@ const rooms = [
     id: 2,
     name: 'Deluxe Suite',
     type: 'deluxe',
-    price: 249,
+    price: 37500,
     image: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     features: ['King Bed', 'Ocean View', 'Mini Bar', 'Smart TV'],
     size: 45,
@@ -26,7 +26,7 @@ const rooms = [
     id: 3,
     name: 'Executive Suite',
     type: 'suite',
-    price: 399,
+    price: 60000,
     image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     features: ['King Bed', 'Balcony', 'Jacuzzi', 'Work Desk'],
     size: 65,
@@ -36,7 +36,7 @@ const rooms = [
     id: 4,
     name: 'Presidential Suite',
     type: 'presidential',
-    price: 899,
+    price: 135000,
     image: 'https://images.unsplash.com/photo-1591088398332-c518a23170f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     features: ['2 Bedrooms', 'Panoramic View', 'Private Pool', 'Butler Service'],
     size: 120,
@@ -77,7 +77,7 @@ const RoomsSection = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <span className="text-2xl font-bold">${room.price}</span>
+                  <span className="text-2xl font-bold">KES {room.price.toLocaleString()}</span>
                   <span className="text-sm opacity-80">/night</span>
                 </div>
               </div>

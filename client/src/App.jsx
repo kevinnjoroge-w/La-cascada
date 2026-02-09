@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
+import { testConnection } from './services/api';
 
 // Layout
 import LandingPage from './pages/LandingPage';
@@ -67,8 +69,27 @@ const PublicRoute = ({ children }) => {
 };
 
 function App() {
+  const [connectionStatus, setConnectionStatus] = useState(null);
+
+  useEffect(() => {
+    const checkConnection = async () => {
+      try {
+        const data = await testConnection();
+        setConnectionStatus({ success: true, message: data.message });
+      } catch (error) {
+        setConnectionStatus({ success: false, message: 'Backend connection failed' });
+      }
+    };
+    checkConnection();
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
+      {connectionStatus && !connectionStatus.success && (
+        <div className="bg-red-500 text-white p-2 text-center text-sm">
+          Warning: {connectionStatus.message}. Please check if the backend is running.
+        </div>
+      )}
       <Navbar />
       <main className="flex-1">
         <Routes>

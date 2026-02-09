@@ -2,12 +2,26 @@ import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || '/api';
 
+console.log('API Service initialized with URL:', API_URL);
+
 const api = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
+export const testConnection = async () => {
+  try {
+    console.log('Testing connection to:', `${API_URL}/test`);
+    const response = await api.get('/test');
+    console.log('Connection successful:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Connection failed:', error);
+    throw error;
+  }
+};
 
 // Request interceptor to add auth token
 api.interceptors.request.use(

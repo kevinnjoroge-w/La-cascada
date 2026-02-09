@@ -68,6 +68,15 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Static folder for uploaded files
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
+// Test endpoint
+app.get('/api/test', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Backend is connected!',
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Health check route
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', message: 'Server is running' });

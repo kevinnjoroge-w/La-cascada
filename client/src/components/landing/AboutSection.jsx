@@ -27,7 +27,7 @@ const AboutSection = () => {
           <span className="text-primary-600 font-medium mb-2 block">About Us</span>
           <h2 className="section-title">Discover Our World</h2>
           <p className="section-subtitle">
-            Welcome to Hotel & Entertainment Complex — where luxury meets entertainment
+            Welcome to La Cascada Sports Bar and Gardens — where nature meets vibrant life
           </p>
         </div>
 
@@ -38,15 +38,14 @@ const AboutSection = () => {
               A Premier Destination for <span className="text-primary-600">Every Occasion</span>
             </h3>
             <p className="text-secondary-600 mb-6 leading-relaxed">
-              Nestled in the heart of the city, Hotel & Entertainment Complex offers an unparalleled 
-              experience combining sophisticated accommodations, exquisite dining, and versatile 
-              event spaces. Whether you're here for business, leisure, or celebration, we provide 
-              the perfect backdrop for memorable moments.
+              Located along Limuru Road in Ruaka, Nairobi, La Cascada is a serene garden
+              retreat featuring an enchanting waterfall. We offer a unique blend of
+              relaxation and entertainment, making us a true gem for nature lovers.
             </p>
             <p className="text-secondary-600 mb-8 leading-relaxed">
-              Our commitment to excellence ensures every guest receives personalized service and 
-              unforgettable experiences. From our award-winning chefs to our dedicated event planners, 
-              every team member is committed to making your stay exceptional.
+              From our top-tier restaurant and lively sports bar to stylish accommodations
+              and versatile event spaces, we provide a "home away from home" atmosphere
+              that guests have loved and recommended for years.
             </p>
             <Link to="/book/room" className="btn-primary">
               Explore Our Services

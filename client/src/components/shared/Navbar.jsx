@@ -38,25 +38,22 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || isOpen
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isOpen
           ? 'bg-white shadow-lg'
           : 'bg-transparent'
-      }`}
+        }`}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-              isScrolled || isOpen ? 'bg-primary-600' : 'bg-white/90'
-            }`}>
+            <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${isScrolled || isOpen ? 'bg-primary-600' : 'bg-white/90'
+              }`}>
               <span className={`text-2xl ${isScrolled || isOpen ? 'text-white' : 'text-primary-600'}`}>🏨</span>
             </div>
-            <span className={`text-xl font-display font-bold ${
-              isScrolled || isOpen ? 'text-secondary-900' : 'text-white'
-            }`}>
-              Hotel Complex
+            <span className={`text-xl font-display font-bold ${isScrolled || isOpen ? 'text-secondary-900' : 'text-white'
+              }`}>
+              La Cascada
             </span>
           </Link>
 
@@ -66,11 +63,10 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`font-medium transition-colors duration-200 ${
-                  isScrolled || isOpen
+                className={`font-medium transition-colors duration-200 ${isScrolled || isOpen
                     ? 'text-secondary-600 hover:text-primary-600'
                     : 'text-white/90 hover:text-white'
-                }`}
+                  }`}
               >
                 {link.name}
               </Link>
@@ -83,22 +79,20 @@ const Navbar = () => {
               <div className="flex items-center space-x-4">
                 <Link
                   to="/dashboard"
-                  className={`font-medium ${
-                    isScrolled || isOpen
+                  className={`font-medium ${isScrolled || isOpen
                       ? 'text-secondary-600 hover:text-primary-600'
                       : 'text-white/90 hover:text-white'
-                  }`}
+                    }`}
                 >
                   Dashboard
                 </Link>
                 {user?.role === 'admin' && (
                   <Link
                     to="/admin"
-                    className={`font-medium ${
-                      isScrolled || isOpen
+                    className={`font-medium ${isScrolled || isOpen
                         ? 'text-secondary-600 hover:text-primary-600'
                         : 'text-white/90 hover:text-white'
-                    }`}
+                      }`}
                   >
                     Admin
                   </Link>
@@ -114,11 +108,10 @@ const Navbar = () => {
               <>
                 <Link
                   to="/login"
-                  className={`font-medium ${
-                    isScrolled || isOpen
+                  className={`font-medium ${isScrolled || isOpen
                       ? 'text-secondary-600 hover:text-primary-600'
                       : 'text-white/90 hover:text-white'
-                  }`}
+                    }`}
                 >
                   Login
                 </Link>
@@ -132,9 +125,8 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-2 rounded-lg ${
-              isScrolled || isOpen ? 'text-secondary-900' : 'text-white'
-            }`}
+            className={`lg:hidden p-2 rounded-lg ${isScrolled || isOpen ? 'text-secondary-900' : 'text-white'
+              }`}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen ? (

@@ -3,7 +3,7 @@ const ContactSection = () => {
     {
       icon: '📍',
       title: 'Address',
-      lines: ['123 Hotel Complex Avenue', 'City Center, State 12345'],
+      lines: ['Ruaka Rd, Nairobi, Kenya', 'Near Limuru Road'],
     },
     {
       icon: '📞',
@@ -13,12 +13,12 @@ const ContactSection = () => {
     {
       icon: '✉️',
       title: 'Email',
-      lines: ['info@hotelcomplex.com', 'reservations@hotelcomplex.com'],
+      lines: ['info@lacascada.co.ke', 'reservations@lacascada.co.ke'],
     },
     {
       icon: '🕐',
       title: 'Hours',
-      lines: ['Front Desk: 24/7', 'Restaurant: 6AM - 11PM', 'Bar: 11AM - 2AM'],
+      lines: ['Front Desk: 24/7', 'Restaurant: 24/7', 'Sports Bar: 24/7'],
     },
   ];
 
@@ -58,7 +58,7 @@ const ContactSection = () => {
                 <div className="text-center">
                   <span className="text-4xl block mb-2">🗺️</span>
                   <p className="text-secondary-400">Map Loading...</p>
-                  <p className="text-secondary-500 text-sm">123 Hotel Complex Avenue</p>
+                  <p className="text-secondary-500 text-sm">Ruaka Rd, Nairobi, Kenya</p>
                 </div>
               </div>
             </div>

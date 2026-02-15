@@ -8,7 +8,7 @@ const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { register: registerUser } = useAuth();
   const navigate = useNavigate();
-  
+
   const {
     register,
     handleSubmit,
@@ -28,7 +28,7 @@ const RegisterPage = () => {
       password: data.password,
     });
     setIsLoading(false);
-    
+
     if (result.success) {
       toast.success('Account created successfully!');
       navigate('/dashboard');
@@ -45,7 +45,7 @@ const RegisterPage = () => {
           <Link to="/" className="inline-flex items-center space-x-2">
             <span className="text-4xl">🏨</span>
             <span className="text-2xl font-display font-bold text-secondary-900">
-              Hotel Complex
+              La Cascada
             </span>
           </Link>
         </div>

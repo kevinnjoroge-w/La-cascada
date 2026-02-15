@@ -1,5 +1,15 @@
 {
+  "name": "hotel-complex-platform",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
+    "client": "cd client && npm run dev",
+    "server": "cd server && npm run dev",
+    "dev": "concurrently \"npm run client\" \"npm run server\""
+  },
   "dependencies": {
+    "concurrently": "^8.2.2",
     "cors": "^2.8.6"
   }
 }

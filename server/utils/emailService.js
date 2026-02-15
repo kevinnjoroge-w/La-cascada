@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const createTransporter = async () => {
   // In production, use real SMTP settings
   // For development, you can use Ethereal or a test account
-  
+
   if (process.env.EMAIL_SERVICE === 'gmail') {
     return nodemailer.createTransport({
       service: 'gmail',
@@ -33,7 +33,7 @@ exports.sendEmail = async (options) => {
     const transporter = await createTransporter();
 
     const mailOptions = {
-      from: `"${process.env.EMAIL_FROM_NAME || 'Hotel Complex'}" <${process.env.EMAIL_FROM || 'noreply@hotelcomplex.com'}>`,
+      from: `"${process.env.EMAIL_FROM_NAME || 'La Cascada'}" <${process.env.EMAIL_FROM || 'noreply@lacascada.co.ke'}>`,
       to: options.to,
       subject: options.subject,
       html: options.html,
@@ -42,7 +42,7 @@ exports.sendEmail = async (options) => {
 
     const info = await transporter.sendMail(mailOptions);
     console.log('Email sent: %s', info.messageId);
-    
+
     // For development, log the preview URL
     if (process.env.NODE_ENV === 'development') {
       console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
@@ -58,7 +58,7 @@ exports.sendEmail = async (options) => {
 // Send booking confirmation email
 exports.sendBookingConfirmation = async (user, booking) => {
   const subject = `Booking Confirmation - ${booking.bookingNumber}`;
-  
+
   const html = `
     <!DOCTYPE html>
     <html>
@@ -94,7 +94,7 @@ exports.sendBookingConfirmation = async (user, booking) => {
           <a href="${process.env.FRONTEND_URL}/bookings/${booking._id}" class="btn">View Booking</a>
         </div>
         <div class="footer">
-          <p>&copy; ${new Date().getFullYear()} Hotel Complex. All rights reserved.</p>
+          <p>&copy; ${new Date().getFullYear()} La Cascada Sports Bar and Gardens. All rights reserved.</p>
         </div>
       </div>
     </body>
@@ -111,7 +111,7 @@ exports.sendBookingConfirmation = async (user, booking) => {
 // Send order confirmation email
 exports.sendOrderConfirmation = async (user, order) => {
   const subject = `Order Confirmation - ${order.orderNumber}`;
-  
+
   const html = `
     <!DOCTYPE html>
     <html>
@@ -129,7 +129,7 @@ exports.sendOrderConfirmation = async (user, order) => {
     <body>
       <div class="container">
         <div class="header">
-          <h1>🍽️ Restaurant & Bar</h1>
+          <h1>🍽️ La Cascada Restaurant & Bar</h1>
           <p>Order Confirmation</p>
         </div>
         <div class="content">
@@ -147,7 +147,7 @@ exports.sendOrderConfirmation = async (user, order) => {
           <a href="${process.env.FRONTEND_URL}/orders/${order._id}" class="btn">View Order</a>
         </div>
         <div class="footer">
-          <p>&copy; ${new Date().getFullYear()} Hotel Complex. All rights reserved.</p>
+          <p>&copy; ${new Date().getFullYear()} La Cascada Sports Bar and Gardens. All rights reserved.</p>
         </div>
       </div>
     </body>
@@ -165,7 +165,7 @@ exports.sendOrderConfirmation = async (user, order) => {
 exports.sendPasswordResetEmail = async (user, resetToken) => {
   const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
   const subject = 'Password Reset Request';
-  
+
   const html = `
     <!DOCTYPE html>
     <html>

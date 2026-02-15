@@ -6,8 +6,8 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-          alt="Hotel Complex"
+          src="https://images.unsplash.com/photo-1549294413-26f195200c16?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+          alt="La Cascada Garden"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-secondary-900/70 via-secondary-900/50 to-secondary-900/80"></div>
@@ -17,20 +17,16 @@ const Hero = () => {
       <div className="relative z-10 container-custom text-center text-white px-4">
         <div className="animate-fade-in">
           <span className="inline-block px-4 py-2 bg-primary-600/30 backdrop-blur-sm rounded-full text-sm font-medium mb-6 border border-white/20">
-            ✨ Welcome to Luxury & Entertainment
+            ✨ Welcome to La Cascada Sports Bar & Gardens
           </span>
         </div>
-        
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 animate-slide-up">
-          Experience <span className="text-gradient">Excellence</span>
-          <br />
-          in Every Moment
-        </h1>
-        
-        <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 animate-slide-up animate-delay-100">
-          From luxurious hotel accommodations to exciting sports bar experiences, 
-          fine dining, and breathtaking garden events — all in one extraordinary destination.
-        </p>
+
+        Experience <span className="text-gradient">Nature & Vibrant Life</span>
+        <br />
+        at La Cascada
+
+        Discover a serene garden retreat with an enchanting waterfall,
+        a top-tier restaurant, a lively sports bar, and stylish accommodations in Ruaka.
 
         {/* Quick Actions */}
         <div className="flex flex-wrap justify-center gap-4 mb-12 animate-slide-up animate-delay-200">
@@ -51,20 +47,20 @@ const Hero = () => {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-in animate-delay-300">
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold mb-1">150+</div>
-            <div className="text-white/60 text-sm">Luxury Rooms</div>
+            <div className="text-3xl md:text-4xl font-bold mb-1">90%</div>
+            <div className="text-white/60 text-sm">Guest Approval</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold mb-1">50+</div>
-            <div className="text-white/60 text-sm">Menu Items</div>
+            <div className="text-3xl md:text-4xl font-bold mb-1">550+</div>
+            <div className="text-white/60 text-sm">Reviews</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold mb-1">500+</div>
-            <div className="text-white/60 text-sm">Events Hosted</div>
+            <div className="text-3xl md:text-4xl font-bold mb-1">24/7</div>
+            <div className="text-white/60 text-sm">Open Daily</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold mb-1">10K+</div>
-            <div className="text-white/60 text-sm">Happy Guests</div>
+            <div className="text-3xl md:text-4xl font-bold mb-1">100%</div>
+            <div className="text-white/60 text-sm">Nature Focused</div>
           </div>
         </div>
       </div>

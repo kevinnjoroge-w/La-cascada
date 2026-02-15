@@ -4,6 +4,7 @@ import RoomsSection from '../components/landing/RoomsSection';
 import MenuSection from '../components/landing/MenuSection';
 import Testimonials from '../components/landing/Testimonials';
 import ContactSection from '../components/landing/ContactSection';
+import BusinessCard from '../components/landing/BusinessCard';
 
 const LandingPage = () => {
   return (
@@ -22,6 +23,9 @@ const LandingPage = () => {
 
       {/* Testimonials */}
       <Testimonials />
+
+      {/* La Cascada Business Card */}
+      <BusinessCard />
 
       {/* Contact Section */}
       <ContactSection />

@@ -23,6 +23,7 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^7.0.13",
     "stripe": "^14.10.0",
+    "ua-parser-js": "^1.0.37",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const Session = require('../models/Session');
 
 /**
  * Authorize roles - check if user has required role
@@ -17,7 +18,7 @@ const authorize = (...roles) => {
   };
 };
 
-// Protect routes - verify JWT token
+// Protect routes - verify JWT token and session
 const protect = async (req, res, next) => {
   let token;
 
@@ -59,8 +60,39 @@ const protect = async (req, res, next) => {
       });
     }
 
-    // Attach user to request
+    // Validate session
+    const session = await Session.findOne({
+      token,
+      user: user._id,
+      isActive: true,
+    });
+
+    if (!session) {
+      return res.status(401).json({
+        success: false,
+        message: 'Session not found or has been revoked',
+      });
+    }
+
+    // Check session expiration
+    if (session.expiresAt < new Date()) {
+      session.isActive = false;
+      session.logoutReason = 'expired';
+      await session.save();
+
+      return res.status(401).json({
+        success: false,
+        message: 'Session has expired. Please login again.',
+      });
+    }
+
+    // Update last activity
+    session.lastActivityAt = new Date();
+    await session.save();
+
+    // Attach user and session to request
     req.user = user;
+    req.session = session;
     next();
   } catch (error) {
     console.error('Auth middleware error:', error.message);

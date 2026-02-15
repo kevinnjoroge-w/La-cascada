@@ -1,5 +1,7 @@
 const User = require('../models/User');
+const Session = require('../models/Session');
 const crypto = require('crypto');
+const UAParser = require('ua-parser-js');
 
 // @desc    Register user
 // @route   POST /api/auth/register
@@ -28,6 +30,27 @@ exports.register = async (req, res) => {
 
     // Generate token
     const token = user.getSignedJwtToken();
+
+    // Parse user agent
+    const parser = new UAParser(req.headers['user-agent']);
+    const result = parser.getResult();
+    const deviceType =
+      result.device.type === 'mobile'
+        ? 'mobile'
+        : result.device.type === 'tablet'
+          ? 'tablet'
+          : 'desktop';
+
+    // Create session
+    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
+    await Session.create({
+      user: user._id,
+      token,
+      ipAddress: req.ip || req.connection.remoteAddress,
+      userAgent: req.headers['user-agent'],
+      deviceType,
+      expiresAt,
+    });
 
     res.status(201).json({
       success: true,
@@ -87,6 +110,31 @@ exports.login = async (req, res) => {
     // Generate token
     const token = user.getSignedJwtToken();
 
+    // Parse user agent
+    const parser = new UAParser(req.headers['user-agent']);
+    const result = parser.getResult();
+    const deviceType =
+      result.device.type === 'mobile'
+        ? 'mobile'
+        : result.device.type === 'tablet'
+          ? 'tablet'
+          : 'desktop';
+
+    // Create session
+    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
+    await Session.create({
+      user: user._id,
+      token,
+      ipAddress: req.ip || req.connection.remoteAddress,
+      userAgent: req.headers['user-agent'],
+      deviceType,
+      expiresAt,
+    });
+
+    // Update user's last login
+    user.lastLogin = new Date();
+    await user.save();
+
     res.status(200).json({
       success: true,
       token,
@@ -108,14 +156,123 @@ exports.login = async (req, res) => {
   }
 };
 
-// @desc    Logout user / Clear cookie
-// @route   GET /api/auth/logout
+// @desc    Logout user / Invalidate session
+// @route   POST /api/auth/logout
 // @access  Private
 exports.logout = async (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: 'Logged out successfully',
-  });
+  try {
+    // Invalidate current session
+    if (req.session) {
+      await req.session.logout('manual');
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Logged out successfully',
+    });
+  } catch (error) {
+    console.error('Logout error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error logging out',
+    });
+  }
+};
+
+// @desc    Logout from all devices
+// @route   POST /api/auth/logout-all
+// @access  Private
+exports.logoutAll = async (req, res) => {
+  try {
+    // Revoke all sessions for this user
+    await Session.revokeUserSessions(req.user._id);
+
+    res.status(200).json({
+      success: true,
+      message: 'Logged out from all devices successfully',
+    });
+  } catch (error) {
+    console.error('Logout all error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error logging out from all devices',
+    });
+  }
+};
+
+// @desc    Get active sessions
+// @route   GET /api/auth/sessions
+// @access  Private
+exports.getSessions = async (req, res) => {
+  try {
+    const sessions = await Session.getActiveSessions(req.user._id);
+
+    const formattedSessions = sessions.map((session) => ({
+      id: session._id,
+      deviceType: session.deviceType,
+      ipAddress: session.ipAddress,
+      userAgent: session.userAgent,
+      loggedInAt: session.loggedInAt,
+      lastActivityAt: session.lastActivityAt,
+      isCurrent: session._id.toString() === req.session._id.toString(),
+    }));
+
+    res.status(200).json({
+      success: true,
+      sessions: formattedSessions,
+    });
+  } catch (error) {
+    console.error('Get sessions error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching sessions',
+    });
+  }
+};
+
+// @desc    Revoke a specific session
+// @route   DELETE /api/auth/sessions/:sessionId
+// @access  Private
+exports.revokeSession = async (req, res) => {
+  try {
+    const session = await Session.findById(req.params.sessionId);
+
+    if (!session) {
+      return res.status(404).json({
+        success: false,
+        message: 'Session not found',
+      });
+    }
+
+    // Verify session belongs to current user
+    if (session.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({
+        success: false,
+        message: 'Not authorized to revoke this session',
+      });
+    }
+
+    // Prevent revoking current session
+    if (session._id.toString() === req.session._id.toString()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Cannot revoke current session. Use logout instead.',
+      });
+    }
+
+    await session.logout('revoked');
+
+    res.status(200).json({
+      success: true,
+      message: 'Session revoked successfully',
+    });
+  } catch (error) {
+    console.error('Revoke session error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error revoking session',
+    });
+  }
 };
 
 // @desc    Get current logged in user

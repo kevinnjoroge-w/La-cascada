@@ -4,6 +4,9 @@ const {
   register,
   login,
   logout,
+  logoutAll,
+  getSessions,
+  revokeSession,
   getMe,
   forgotPassword,
   resetPassword,
@@ -23,6 +26,9 @@ router.post('/reset-password/:token', resetPassword);
 router.use(protect);
 router.get('/me', getMe);
 router.post('/logout', logout);
+router.post('/logout-all', logoutAll);
+router.get('/sessions', getSessions);
+router.delete('/sessions/:sessionId', revokeSession);
 router.put('/updateprofile', updateProfile);
 router.put('/updatepassword', updatePassword);
 

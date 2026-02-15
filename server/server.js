@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
 const connectDB = require('./config/db');
+const Session = require('./models/Session');
 
 // Route files
 const authRoutes = require('./routes/auth');
@@ -22,8 +23,21 @@ const { errorHandler, notFound } = require('./middleware/errorHandler');
 
 const app = express();
 
+// Trust proxy - important for getting correct IP address behind reverse proxies
+app.set('trust proxy', 1);
+
 // Connect to database
 connectDB();
+
+// Session cleanup job - run every hour
+setInterval(async () => {
+  try {
+    await Session.cleanupExpiredSessions();
+    console.log('Session cleanup completed');
+  } catch (error) {
+    console.error('Session cleanup error:', error);
+  }
+}, 60 * 60 * 1000); // 1 hour
 
 // Security middleware
 app.use(helmet());
